@@ -5,7 +5,7 @@ var udpPort = new osc.UDPPort({
     localAddress: "0.0.0.0",
     localPort: 8001,
     remotePort: 8000,
-    remoteAddress: "0.0.0.0",
+    remoteAddress: "10.0.0.23",
     metadata: true
 });
 
@@ -21,8 +21,6 @@ udpPort.open();
 
 // When the port is read, send an OSC message to, say, SuperCollider
 udpPort.on("ready", function () {
-
-
     udpPort.send({
         address: "/track/name",
         args: [
@@ -31,5 +29,5 @@ udpPort.on("ready", function () {
                 value: "bar"
             }
         ]
-    }, "10.0.0.202", 8000);
+    }, udpPort.remoteAddress, udpPort.remotePort);
 });
