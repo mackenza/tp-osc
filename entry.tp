@@ -1,0 +1,62 @@
+{
+  "sdk": 2,
+  "version": 0.9,
+  "name": "Open Sound Control",
+  "id": "OSC",
+  "configuration": {
+    "colorDark": "#063970",
+    "colorLight": "#eab676"
+  },
+  "plugin_start_cmd": "node %TP_PLUGIN_FOLDER%osc\\index.js",
+  "categories": [
+    {
+      "id": "osc",
+      "name": "OSC",
+      "imagepath": "%TP_PLUGIN_FOLDER%osc\\reaper.png",
+      "actions": [
+        {
+          "id": "trackChange",
+          "name": "Change active track",
+          "prefix": "plugin",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Make {$trackNumber$} active",
+          "data": [
+            {
+              "id": "trackNumber",
+              "type": "choice",
+              "label": "Choose Track",
+              "valueChoices": [
+                "1",
+                "2"
+              ]
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "id": "activeTrack",
+          "type": "choice",
+          "desc": "Which track is active",
+          "default": "1",
+          "valueChoices": [
+            "1",
+            "2"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "activeTrackChange",
+          "name": "The active track has changed",
+          "format": "$val is made the active track",
+          "type": "communicate",
+          "valueChoices": ["1","2"],
+          "valueType": "choice",
+          "valueStateId": "activeTrack"
+        }
+      ]      
+    }
+  ]
+}
