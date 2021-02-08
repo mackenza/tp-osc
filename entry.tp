@@ -17,50 +17,49 @@
         {
           "id": "playAction",
           "name": "Play",
-          "prefix": "plugin",
+          "prefix": "OSC",
           "type": "communicate"
         },
         {
           "id": "stopAction",
           "name": "Stop",
-          "prefix": "plugin",
+          "prefix": "OSC",
           "type": "communicate"
         },
         {
           "id": "pauseAction",
           "name": "Pause",
-          "prefix": "plugin",
+          "prefix": "OSC",
           "type": "communicate"
         },
         {
           "id": "loopAction",
           "name": "Loop",
-          "prefix": "plugin",
+          "prefix": "OSC",
           "type": "communicate"
         },
         {
           "id": "recordAction",
           "name": "Record",
-          "prefix": "plugin",
+          "prefix": "OSC",
           "type": "communicate"
         },
         {
           "id": "muteAction",
-          "name": "Stop",
-          "prefix": "plugin",
+          "name": "Mute",
+          "prefix": "OSC",
           "type": "communicate"
         }
-
       ],
       "states": [
         {
           "id": "playingState",
           "type": "choice",
           "desc": "Is playing",
-          "default": "False",
+          "default": "Stopped",
           "valueChoices": [
-            "False",
-            "True"
+            "Stopped",
+            "Playing"
           ]
         }
       ],
@@ -68,10 +67,10 @@
         {
           "id": "playChangeEvent",
           "name": "The playing state has changed",
-          "format": "$val",
+          "format": "When playback is $val",
           "type": "communicate",
-          "valueChoices": ["Playing","Stopped"],
           "valueType": "choice",
+          "valueChoices": ["Playing","Stopped"],          
           "valueStateId": "playingState"
         }
       ]      

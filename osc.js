@@ -11,7 +11,13 @@ var udpPort = new osc.UDPPort({
 const pluginId = 'OSC';
 
 TPClient.on("Action", (data) => {
-    // var state = "2";
+    var state;
+
+    if (data.actionId === "playAction") {
+        state = "Playing";
+    } else if (data.actionId === "stopAction") {
+        state = "Stopped";
+    }
     console.log(data);
     // if (data.data[0].value === "1") {
     //     state = "1"
@@ -25,7 +31,7 @@ TPClient.on("Action", (data) => {
     //         }
     //     ]
     // }, udpPort.remoteAddress, udpPort.remotePort);
-    // TPClient.stateUpdate("activeTrack", state, data.InstanceId);
+    TPClient.stateUpdate("playingState", state, data.InstanceId);
 
 });
 
