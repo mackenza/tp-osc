@@ -18,18 +18,39 @@
           "id": "playAction",
           "name": "Play",
           "prefix": "plugin",
-          "type": "communicate",
-          "tryInline": true,
-          "format": "Press Play"
+          "type": "communicate"
         },
         {
           "id": "stopAction",
           "name": "Stop",
           "prefix": "plugin",
-          "type": "communicate",
-          "tryInline": true,
-          "format": "Press Stop"
+          "type": "communicate"
+        },
+        {
+          "id": "pauseAction",
+          "name": "Pause",
+          "prefix": "plugin",
+          "type": "communicate"
+        },
+        {
+          "id": "loopAction",
+          "name": "Loop",
+          "prefix": "plugin",
+          "type": "communicate"
+        },
+        {
+          "id": "recordAction",
+          "name": "Record",
+          "prefix": "plugin",
+          "type": "communicate"
+        },
+        {
+          "id": "muteAction",
+          "name": "Stop",
+          "prefix": "plugin",
+          "type": "communicate"
         }
+
       ],
       "states": [
         {
