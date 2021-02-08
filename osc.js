@@ -12,26 +12,43 @@ const pluginId = 'OSC';
 
 TPClient.on("Action", (data) => {
     var state;
+    function sendOSC(destination, type, value) {
+        console.log(destination,type,value);
+        udpPort.send({
+            address: destination,
+            args: [
+                {
+                    type: type,
+                    value: value
+                }
+            ]
+        }, udpPort.remoteAddress, udpPort.remotePort);
+    }
+
+    switch(data.actionId) {
+        case "playAction":
+            state = "Playing";
+            sendOSC("/play", "i", 1);
+            TPClient.stateUpdate("playingState", state, data.InstanceId);
+            break;
+        case "stopAction":
+            state = "Stopped";
+            sendOSC("/stop", "i", 1);
+            TPClient.stateUpdate("playingState", state, data.InstanceId);
+            break;
+        case "muteAction":
+            sendOSC("/track/mute/toggle", "i", 1);
+            break;
+    }
 
     if (data.actionId === "playAction") {
-        state = "Playing";
+        
     } else if (data.actionId === "stopAction") {
-        state = "Stopped";
-    }
+        
+    } 
     console.log(data);
-    // if (data.data[0].value === "1") {
-    //     state = "1"
-    // }
-    // udpPort.send({
-    //     address: "/play",
-    //     args: [
-    //         {
-    //             type: "i",
-    //             value: 1
-    //         }
-    //     ]
-    // }, udpPort.remoteAddress, udpPort.remotePort);
-    TPClient.stateUpdate("playingState", state, data.InstanceId);
+
+    ;
 
 });
 
