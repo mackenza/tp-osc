@@ -7,7 +7,7 @@
     "colorDark": "#063970",
     "colorLight": "#eab676"
   },
-  "plugin_start_cmd": "node %TP_PLUGIN_FOLDER%osc\\index.js",
+  "plugin_start_cmd": "",
   "categories": [
     {
       "id": "osc",
@@ -15,46 +15,43 @@
       "imagepath": "%TP_PLUGIN_FOLDER%osc\\reaper.png",
       "actions": [
         {
-          "id": "trackChange",
-          "name": "Change active track",
+          "id": "playAction",
+          "name": "Play",
           "prefix": "plugin",
           "type": "communicate",
           "tryInline": true,
-          "format": "Make {$trackNumber$} active",
-          "data": [
-            {
-              "id": "trackNumber",
-              "type": "choice",
-              "label": "Choose Track",
-              "valueChoices": [
-                "1",
-                "2"
-              ]
-            }
-          ]
+          "format": "Press Play"
+        },
+        {
+          "id": "stopAction",
+          "name": "Stop",
+          "prefix": "plugin",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Press Stop"
         }
       ],
       "states": [
         {
-          "id": "activeTrack",
+          "id": "playingState",
           "type": "choice",
-          "desc": "Which track is active",
-          "default": "1",
+          "desc": "Is playing",
+          "default": "False",
           "valueChoices": [
-            "1",
-            "2"
+            "False",
+            "True"
           ]
         }
       ],
       "events": [
         {
-          "id": "activeTrackChange",
-          "name": "The active track has changed",
-          "format": "$val is made the active track",
+          "id": "playChangeEvent",
+          "name": "The playing state has changed",
+          "format": "$val",
           "type": "communicate",
-          "valueChoices": ["1","2"],
+          "valueChoices": ["Playing","Stopped"],
           "valueType": "choice",
-          "valueStateId": "activeTrack"
+          "valueStateId": "playingState"
         }
       ]      
     }
