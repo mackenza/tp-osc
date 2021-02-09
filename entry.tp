@@ -55,11 +55,41 @@
         {
           "id": "playingState",
           "type": "choice",
-          "desc": "Is playing",
+          "desc": "Play state",
           "default": "Stopped",
           "valueChoices": [
             "Stopped",
             "Playing"
+          ]
+        },
+        {
+          "id": "muteState",
+          "type": "choice",
+          "desc": "Mute state",
+          "default": "unmuted",
+          "valueChoices": [
+            "unmuted",
+            "muted"
+          ]
+        },
+        {
+          "id": "loopState",
+          "type": "choice",
+          "desc": "Loop state",
+          "default": "looping",
+          "valueChoices": [
+            "looping",
+            "not looping"
+          ]
+        },
+        {
+          "id": "recordState",
+          "type": "choice",
+          "desc": "Record state",
+          "default": "not recording",
+          "valueChoices": [
+            "not recording",
+            "recording"
           ]
         }
       ],
@@ -72,6 +102,33 @@
           "valueType": "choice",
           "valueChoices": ["Playing","Stopped"],          
           "valueStateId": "playingState"
+        },
+        {
+          "id": "loopChangeEvent",
+          "name": "The looping state has changed",
+          "format": "When looping is $val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": ["looping","not looping"],          
+          "valueStateId": "loopState"
+        },
+        {
+          "id": "recordChangeEvent",
+          "name": "The record state has changed",
+          "format": "When record is $val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": ["recording","not recording"],          
+          "valueStateId": "recordState"
+        },
+        {
+          "id": "muteChangeEvent",
+          "name": "The mute state has changed",
+          "format": "When mute is $val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": ["muted","unmuted"],          
+          "valueStateId": "muteState"
         }
       ]      
     }
