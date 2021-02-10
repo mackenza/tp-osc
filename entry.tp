@@ -49,6 +49,23 @@
           "name": "Mute",
           "prefix": "OSC",
           "type": "communicate"
+        },
+        {
+          "id": "trackASelect",
+          "name": "Track A Select",
+          "prefix": "OSC",
+          "type": "communicate",
+          "data": [
+            {
+              "id": "trackAChoice",
+              "type": "choice",
+              "label": "Select Track #",
+              "default": "1",
+              "valueChoices": [
+                "1","2","3","4","5","6"
+              ]
+            }
+          ]
         }
       ],
       "states": [
